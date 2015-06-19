@@ -1,0 +1,144 @@
+<html>
+<head>
+	<title>Calcultor</title>
+	<link rel="stylesheet" type="text/css" href="calculator.css">
+	<script type="text/javascript" src="calculator.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+
+
+	<script>
+		$(document).ready(function(){
+			var a = new Calculator();	
+
+			var input ="";
+			var win = document.getElementById('window');
+
+
+			var keys = document.getElementsByClassName('key-button');
+			console.log(keys);
+
+			function myFunction( ){
+				var letter = this.getElementsByTagName('p')[0].innerHTML;
+				console.log(letter);
+				if ( letter == "="){
+					// alert('hi');
+					win.innerHTML = parseInput(input);
+
+				}
+				else if ( letter == "CE"){
+					win.innerHTML = "";
+				}
+
+
+
+				else{
+					// alert('no hi');
+					input += letter;
+					win.innerHTML = input;
+					// alert(input);
+				}
+			};
+
+			for ( var i = 0; i<keys.length; i++){
+				keys[i].addEventListener('click', myFunction, false);
+			};
+
+
+		});
+
+
+
+	</script>
+</head>
+
+
+
+<body>
+
+
+	<div id='main'>
+
+		<div id="display">
+			<p id="window"></p>
+
+		</div>
+
+
+		<div id="keys">
+			<div class="key-button">
+				<p>CE</p>
+
+			</div>
+			<div class="key-button">
+				<!-- <p>&lt;--</p> -->
+				<p>(</p>
+			</div>
+			<div class="key-button">
+				<p>)</p>
+			</div>
+			<div class="key-button">
+				<p>+</p>
+			</div>
+			<div class="key-button">
+				<p>7</p>
+			</div>
+			<div class="key-button">
+				<p>8</p>
+			</div>
+			<div class="key-button">
+				<p>9</p>
+			</div>
+			<div class="key-button">
+				<p>-</p>
+			</div>
+			<div class="key-button">
+				<p>4</p>
+			</div>
+			<div class="key-button">
+				<p>5</p>
+			</div>
+			<div class="key-button">
+				<p>6</p>
+			</div>
+			<div class="key-button">
+				<p>x</p>
+			</div>
+			<div class="key-button">
+				<p>1</p>
+			</div>
+			<div class="key-button">
+				<p>2</p>
+			</div>
+			<div class="key-button">
+				<p>3</p>
+			</div>
+			<div class="key-button">
+				<p>/</p>
+			</div>
+			<div class="key-button">
+				<p>0</p>
+			</div>
+			<div class="key-button">
+				<!-- <p>%</p> -->
+			</div>
+			<div class="key-button">
+				<!-- <p>.</p> -->
+			</div>
+			<div class="key-button">
+				<p>=</p>
+			</div>
+		</div>
+
+
+
+	</div>
+
+
+
+
+
+
+
+</body>
+</html>
