@@ -2,28 +2,24 @@
 
 function Calculator(){
 
-	this.add = function(num1, num2){
-		console.log('ttt');
-		return num1+ num2;
+	this.stackHolder = [];
 
-	}
-
-	this.subtract = function(num1, num2){
-		return num1- num2;
-	}
-
-	this.multiply = function(num1, num2){
-		return num1*num2;
-	}
-
-	this.divide = function(num1, num2){
-		return num1/num2;
-	}
-
-
-
-	this.validateInput = function(input){
+	this.validateInput = function(input, letter){
 		//now assume the input is valid.
+		var ch = input.charAt(input.length - 1 );
+		if(  ch == '+' || ch == '-' || ch == '/' || ch == 'x'  ){
+			if (  letter == ')' || letter == '+' || letter == '-' || letter == '/' || letter == 'x') {
+				// console.log( "am i here");
+				return false;
+			}
+
+		}
+		
+
+		return true;
+
+
+
 	}
 
 
@@ -54,15 +50,12 @@ function Calculator(){
 					if (stack.length > 0 && stack[stack.length-1] != '('){
 						if ( stack[stack.length-1] == '+' || stack[stack.length-1] == '-' ){
 							// out = out +  ' ' + input.charAt(i);
-							// out += ' ';
-							
+							// out += ' ';	
 						}
 						else {
 							out = out +  ' ' + stack.pop();
-							
-							
-						}
-						
+
+						}						
 					}
 					out += ' ';
 					stack.push(input.charAt(i));
@@ -73,15 +66,11 @@ function Calculator(){
 					if (stack.length > 0 && stack[stack.length-1] != '('){
 						if ( stack[stack.length-1] == '+' || stack[stack.length-1] == '-' ){
 							// out = out +  ' ' + input.charAt(i);
-							// out += ' ';
-							
+							// out += ' ';							
 						}
 						else {
-							out = out +  ' ' + stack.pop();
-							
-							
-						}
-						
+							out = out +  ' ' + stack.pop();														
+						}						
 					}
 					out += ' ';
 					stack.push(input.charAt(i));
@@ -102,10 +91,6 @@ function Calculator(){
 					console.log('i');
 					break;
 			}
-
-
-
-
 		}
 
 		while ( stack.length > 0) {
@@ -165,9 +150,6 @@ function Calculator(){
 					
 	}
 
-
-
-
 }
 
 
@@ -181,6 +163,8 @@ function Calculator(){
 
 	var parseInput = function(input){
 		var cal = new Calculator();
+
+
 
 
 		// console.log('ddd '+input);

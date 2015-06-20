@@ -21,17 +21,48 @@
 			function myFunction( ){
 				var letter = this.getElementsByTagName('p')[0].innerHTML;
 				console.log(letter);
+				if ( !a.validateInput(input, letter)  ){
+					input = "";
+					win.innerHTML = "ERROR";
+					return;
+				}
+
+
+				if (  letter == '(' ) {
+					 a.stackHolder.push(letter);
+				}
+
+				if ( letter == ')') {
+					var t = a.stackHolder.pop();
+				 	if ( t != '(') {
+				 		input = "";
+						win.innerHTML = "ERROR";
+						return;
+				 	}
+
+				}
+
+
 				if ( letter == "="){
 					// alert('hi');
-					win.innerHTML = parseInput(input);
+					
+					if ( a.stackHolder.length == 0 ){
+						console.log('tttt');
+						win.innerHTML = parseInput(input);
 
+					} 
+					else{
+						input = "";
+						console.log('test', a.stackHolder);
+						win.innerHTML = "ERROR";
+
+					} 
+					
 				}
 				else if ( letter == "CE"){
+					input = "";
 					win.innerHTML = "";
 				}
-
-
-
 				else{
 					// alert('no hi');
 					input += letter;
