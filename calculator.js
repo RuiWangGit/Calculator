@@ -2,22 +2,14 @@
 
 function Calculator(){
 
-	this.stackHolder = [];
+	// this.stackHolder = [];
 
-	this.validateInput = function(input, letter){
-		//now assume the input is valid.
-		var ch = input.charAt(input.length - 1 );
-		if(  ch == '+' || ch == '-' || ch == '/' || ch == 'x'  ){
-			if (  letter == ')' || letter == '+' || letter == '-' || letter == '/' || letter == 'x') {
-				// console.log( "am i here");
-				return false;
-			}
 
-		}
-		
+	this.validateInput = function(input){
 
-		return true;
-
+		// var pattern = /[^\d+[+|-|x|\/]]+-\d+$/;
+		var pattern = /^(\d+[+-x\/])+(\d)+$/;
+		return pattern.test(input);
 
 
 	}
@@ -111,7 +103,7 @@ function Calculator(){
 		// console.log(isNaN(1));
 		// console.log(isNaN('a'));
 		var stack  = [];
-		var i
+		var i;
 		for ( i in arr ){
 			if (!isNaN(arr[i])){
 				stack.push(parseInt(arr[i]));
@@ -131,8 +123,10 @@ function Calculator(){
 						break;
 					case '/':
 						
-						
-						stack.push(stack.pop()/a);
+						var d2 = stack.pop();
+						var d1 = stack.pop();
+
+						stack.push(d1/d2);							
 						break;
 					case 'x':
 
@@ -161,20 +155,15 @@ function Calculator(){
 	
 
 
-	var parseInput = function(input){
-		var cal = new Calculator();
+var parseInput = function(input){
 
+	var cal = new Calculator();
 
+	var tmp = cal.toRPN.call(this, input);
 
-
-		// console.log('ddd '+input);
-		// console.log('test ' +cal.toRPN.call(this, input));
-		var tmp = cal.toRPN.call(this, input);
-		// console.log(tmp);
-		// console.log(cal.calculate.call(this,tmp));
-		return cal.calculate.call(this,tmp);
-		
-	}
+	return cal.calculate.call(this,tmp);
+	
+}
 
 	// console.log(parseInput('1x(2+3x4)+5'));
 

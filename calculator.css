@@ -38,6 +38,17 @@
 	border: 1px solid gray;
 }
 
+#CE, #ZERO, #EQUAL{
+	width:173px;
+	height:60px;
+	/*background-color: blue;*/
+	display:inline-block;
+	vertical-align: top;
+	margin: 5px;
+	border: 1px solid gray;
+
+}
+
 
 
 

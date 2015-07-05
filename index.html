@@ -18,50 +18,43 @@
 			var keys = document.getElementsByClassName('key-button');
 			console.log(keys);
 
+			for ( var i = 0; i<keys.length; i++){
+				keys[i].addEventListener('click', myFunction, false);
+			};
+
 			function myFunction( ){
 				var letter = this.getElementsByTagName('p')[0].innerHTML;
-				console.log(letter);
-				if ( !a.validateInput(input, letter)  ){
-					input = "";
-					win.innerHTML = "ERROR";
-					return;
-				}
+				
 
 
-				if (  letter == '(' ) {
-					 a.stackHolder.push(letter);
-				}
-
-				if ( letter == ')') {
-					var t = a.stackHolder.pop();
-				 	if ( t != '(') {
-				 		input = "";
-						win.innerHTML = "ERROR";
-						return;
-				 	}
-
-				}
-
-
+				//update input
 				if ( letter == "="){
-					// alert('hi');
-					
-					if ( a.stackHolder.length == 0 ){
-						console.log('tttt');
-						win.innerHTML = parseInput(input);
+					if ( a.validateInput( input ) ){
 
-					} 
-					else{
+						input  = parseInput(input);	
+					
+						win.innerHTML =	input;
+						// input = "";	
+					}
+					else {
+						win.innerHTML =	"Error";
 						input = "";
-						console.log('test', a.stackHolder);
-						win.innerHTML = "ERROR";
-
-					} 
-					
+					}
+						 					
 				}
 				else if ( letter == "CE"){
 					input = "";
 					win.innerHTML = "";
+				}
+				else if ( letter == "DE"){
+					if ( input != "" && input.length > 1){
+						input = input.substring(0, input.length-1);
+						win.innerHTML = input;
+					}
+					else if (input != "" && input.length == 1){
+						input = "";
+						win.innerHTML = "";
+					}
 				}
 				else{
 					// alert('no hi');
@@ -71,9 +64,7 @@
 				}
 			};
 
-			for ( var i = 0; i<keys.length; i++){
-				keys[i].addEventListener('click', myFunction, false);
-			};
+			
 
 
 		});
@@ -97,16 +88,16 @@
 
 
 		<div id="keys">
-			<div class="key-button">
+			<div id="CE" class="key-button">
 				<p>CE</p>
 
 			</div>
-			<div class="key-button">
-				<!-- <p>&lt;--</p> -->
+			<!-- <div  class="key-button">
+				
 				<p>(</p>
-			</div>
+			</div> -->
 			<div class="key-button">
-				<p>)</p>
+				<p>DE</p>
 			</div>
 			<div class="key-button">
 				<p>+</p>
@@ -147,16 +138,16 @@
 			<div class="key-button">
 				<p>/</p>
 			</div>
-			<div class="key-button">
+			<div id = "zero" class="key-button">
 				<p>0</p>
 			</div>
-			<div class="key-button">
-				<!-- <p>%</p> -->
+			<!-- <div class="key-button">
+				
 			</div>
 			<div class="key-button">
-				<!-- <p>.</p> -->
-			</div>
-			<div class="key-button">
+				
+			</div> -->
+			<div id = "equal" class="key-button">
 				<p>=</p>
 			</div>
 		</div>
