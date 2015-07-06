@@ -36,6 +36,7 @@
 	vertical-align: top;
 	margin: 5px;
 	border: 1px solid gray;
+	border-radius: 2px;
 }
 
 #CE, #ZERO, #EQUAL{
@@ -48,6 +49,14 @@
 	border: 1px solid gray;
 
 }
+
+.key-button:hover{
+	background-color: gray;
+}
+.key-button:active{
+	background-color: #006400;
+}
+
 
 
 
